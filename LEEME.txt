@@ -1,63 +1,108 @@
 ════════════════════════════════════════════════════════════
   IAS FLORIDA — SITIO WEB
-  Repositorio: github.com/iceboxairsystems/iasflorida
+  Repositorio: github.com/iceboxairsystems/ias-florida-8
   Dominio: iasflorida.com
 ════════════════════════════════════════════════════════════
 
 CÓMO SUBIRLO
 ────────────────────────────────────────────────────────────
-Sube los 20 archivos a la RAÍZ del repo, no dentro de una
+Sube todos los archivos a la RAÍZ del repo, no dentro de una
 carpeta. Los enlaces entre páginas asumen que todos están
 al mismo nivel; si los metes en subcarpetas, se rompen.
 
-  1. github.com/iceboxairsystems/iasflorida
+  1. github.com/iceboxairsystems/ias-florida-8
   2. Add file -> Upload files
-  3. Arrastra los 20 archivos juntos
+  3. Arrastra los archivos juntos
   4. Commit changes
+
+
+HOUSECALL PRO  (para conectar la agenda y los formularios)
+────────────────────────────────────────────────────────────
+Todo se hace en UN solo archivo: housecall-pro.js
+
+  1. En Housecall Pro copia el código:
+       Agenda:    Marketing → Online Booking → código para el sitio
+                  web (o tu enlace de reservas)
+       Formulario de clientes potenciales (lead form):
+                  Settings → Leads → Share lead form → Copy code
+  2. Abre housecall-pro.js y pega el código entre las dos
+     comillas invertidas ( ` ` ) de "booking" y/o "leadForm".
+     Pégalo tal cual, sin cambiar nada.
+  3. Sube SOLO ese archivo a GitHub.
+  4. Comprueba: abre iasflorida.com/?hcp-check y aparece un
+     recuadro que dice qué encontró.
+
+Qué cambia al pegarlo:
+  • Todos los botones "Book online" de todas las páginas abren
+    Housecall Pro (antes: Calendly).
+  • book.html muestra Housecall Pro en lugar de Calendly.
+  • Si pegas el lead form, reemplaza el formulario de
+    cotización del inicio y el de contact.html.
+  • El formulario de plans.html sigue llegando por correo
+    (Formspree), porque envía los planes elegidos.
+
+Si alguien de Housecall Pro lo instala por ti: mándale este
+archivo housecall-pro.js y dile "paste the code in the booking
+box". No hace falta tocar ninguna otra página.
+
 
 QUÉ ES CADA ARCHIVO
 ────────────────────────────────────────────────────────────
-  index.html                     Página principal (foto incluida)
-  ac-repair.html                 Servicio: reparación
-  ac-installation.html           Servicio: instalación
-  ac-maintenance.html            Servicio: mantenimiento
-  commercial-refrigeration.html  Servicio: refrigeración
-  emergency-hvac.html            Servicio: emergencias 24/7
-  privacy.html                   Política de privacidad
-  terms.html                     Términos del servicio
-  thank-you.html                 Después de enviar formulario
-  404.html                       Página no encontrada
-  robots.txt                     Instrucciones para buscadores
-  sitemap.xml                    Mapa del sitio para Google
-  llms.txt                       Contexto para asistentes de IA
-  site.webmanifest               Configuración de app móvil
-  favicon.ico / .svg             Icono del navegador
-  apple-touch-icon.png           Icono para iPhone
-  icon-192.png / icon-512.png    Iconos de app
-  og-image.jpg                   Imagen al compartir en redes
+  index.html            Inicio (corto: portada, servicios,
+                        por qué nosotros, planes)
+  plans.html            Planes, financiamiento y formas de pago
+                        (con el carrito de planes)
+  about.html            Nosotros
+  faq.html              Preguntas frecuentes
+  contact.html          Contacto + formulario
+  book.html             Agendar en línea (Housecall Pro/Calendly)
+  ac-repair.html        Servicio: reparación
+  ac-installation.html  Servicio: instalación
+  ac-maintenance.html   Servicio: mantenimiento
+  emergency-hvac.html   Servicio: emergencias (despacho todos los días hasta las 10 PM)
+  privacy.html          Política de privacidad
+  terms.html            Términos del servicio
+  thank-you.html        Página de agradecimiento
+  404.html              Página no encontrada
+
+  styles.css            Diseño de TODO el sitio (colores, letras)
+  site.js               Idioma EN/ES, menú, formularios, cookies,
+                        carrito, Google Analytics
+  housecall-pro.js      ← Housecall Pro / Calendly (ver arriba)
+
+  robots.txt, sitemap.xml, llms.txt, site.webmanifest,
+  favicon.ico/.svg, apple-touch-icon.png, icon-192/512.png,
+  og-image.jpg, team.jpg   (iconos, buscadores, foto)
+
+Traducciones al español: cada página trae las suyas al final
+(window.PAGE_ES); las comunes (menú, pie, formularios) están
+en site.js (SITE_ES).
+
 
 PENDIENTES ANTES DE PUBLICAR
 ────────────────────────────────────────────────────────────
-  [ ] Reemplazar cifras marcadas con warning en index.html:
-      500+ clientes, 15+ años, Mismo día, 4.9 estrellas,
-      127 reseñas -> deben ser datos REALES
-  [ ] Escribir testimonios reales (están vacíos)
-  [ ] Escribir casos de éxito reales (están vacíos)
-  [ ] Dirección real y licencia CMC (buscar REEMPLAZAR)
-  [ ] Enlaces sociales (buscar PERFIL en el pie de página)
-  [ ] Google Analytics: reemplazar G-XXXXXXXXXX
+  [ ] Pegar el código de Housecall Pro en housecall-pro.js
+  [ ] Número de licencia real: buscar CMC-XXXXXX (pie de
+      página de todas las páginas)
+  [ ] Google Analytics: reemplazar G-XXXXXXXXXX en site.js
+      (un solo lugar para todo el sitio)
   [ ] Google Search Console: reemplazar PEGA-TU-CODIGO-AQUI
-  [ ] Revisión legal de privacy.html y terms.html por un
-      abogado de Florida (sobre todo secciones 10 y 11 de
-      los términos: tope de responsabilidad e indemnización)
-  [ ] Probar los dos formularios y confirmar los correos
-      de Formspree (si no, los clientes no llegan)
-  [ ] Verificar que el evento de Calendly jobs-iasflorida
-      sea para servicio, no para contratación
+      en index.html
+  [ ] Reseñas y casos reales: hay un espacio marcado en
+      about.html (no publicar reseñas inventadas)
+  [ ] Confirmar las formas de pago en plans.html
+  [ ] privacy.html y terms.html: el aviso naranja "Read before
+      publishing" y las fechas [DATE] se ven en el sitio
+      público. Revisión por un abogado de Florida y luego
+      quitar el aviso.
+  [ ] Probar los formularios y confirmar que llegan los
+      correos de Formspree
+
 
 DATOS DE CONTACTO CONFIGURADOS
 ────────────────────────────────────────────────────────────
   Teléfono:  (786) 372-7744
   Correo:    jobs@iasflorida.com
-  Calendly:  calendly.com/jobs-iasflorida/30min
-  Formspree: hero xvkpgbey / contacto xrpzbanw
+  Calendly:  calendly.com/jobs-iasflorida/30min (hasta conectar
+             Housecall Pro)
+  Formspree: inicio xvkpgbey / contacto y planes xrpzbanw

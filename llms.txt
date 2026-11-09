@@ -1,40 +1,52 @@
 # IAS Florida
 
-> Licensed HVAC mechanical contractor serving Miami-Dade County, Florida.
+> Licensed HVAC mechanical contractor serving Miami-Dade and Broward counties in South Florida.
 > Residential and commercial heating, ventilation, air conditioning and
 
 IAS Florida LLC is the Miami operating subsidiary of Icebox Air Systems LLC.
 The team is bilingual (English and Spanish) and EPA 608 certified. Estimates
-for new installation and replacement are free and provided in writing before
-any work begins.
+and diagnostic visits are $99, waived when the customer approves the work and
+IAS Florida completes it. Prices are provided in writing before any work begins.
+The workmanship warranty is 90 days (labor).
 
-- Phone: (786) 372-7744 — answered by a person 24/7
+- Business hours: Monday–Friday, 8 AM–5 PM
+- Phone: (786) 372-7744 — line open 24/7; emergency dispatch every day until 10 PM (calls after 10 PM get the first appointment the next morning)
+- After-hours fee: $175 for service outside regular business hours (weekdays after 5 PM, weekends and holidays), quoted by phone before dispatch; waived for Deep Freeze members on emergencies after their first 30 days
 - Email: jobs@iasflorida.com
-- Service area: Miami, Coral Gables, Brickell, Doral and greater Miami-Dade County
+- Service area: all of Miami-Dade and Broward counties, including Miami, Coral Gables, Brickell, Miami Beach, Sunny Isles Beach, Hollywood, Fort Lauderdale, Weston and Parkland
 
 ## Services
 
 - [AC Repair](https://iasflorida.com/ac-repair.html): Same-day diagnosis and repair of residential and commercial cooling systems.
 - [New Installation](https://iasflorida.com/ac-installation.html): System replacement and new installs, sized by load calculation, with financing available.
 - [Maintenance](https://iasflorida.com/ac-maintenance.html): Tune-ups and preventive service. Two visits per year recommended for South Florida.
-- [24/7 Emergency Service](https://iasflorida.com/emergency-hvac.html): Around-the-clock dispatch, same-day fix, better and cleaner, across Miami-Dade.
+- [Emergency Service](https://iasflorida.com/emergency-hvac.html): Emergency dispatch every day until 10 PM, same-day fix, better and cleaner, across Miami-Dade and Broward.
 
 ## Plans
 
-- Cold Snap — $159, one-time annual tune-up
-- Deep Freeze — $49/month membership: two tune-ups per year, 10% off repairs, priority dispatch, no overtime fees
-- Glacier — custom pricing for commercial and multi-unit properties
+Residential (homes and condos):
+- Cold Snap — $159, one-time annual tune-up (includes outdoor coil cleaning)
+- Deep Freeze — $49/month home membership: two tune-ups per year (the first after the third monthly payment), 10% off repairs, priority dispatch, no $99 diagnostic fee, no after-hours fee on emergencies after the first 30 days; each additional system (AC or heat pump) +$25/month
+
+Commercial (businesses, offices and multi-unit buildings):
+- Glacier — custom pricing: quarterly preventive service, priority emergency dispatch, dedicated account manager, EPA compliance reporting
 
 ## Key pages
 
-- [Home](https://iasflorida.com/): Services overview, plans, booking and contact
-- [FAQ](https://iasflorida.com/#faq): Response times, estimate pricing, licensing, financing, service frequency
-- [Payment methods](https://iasflorida.com/#payment): Accepted payment types and how billing works
+- [Home](https://iasflorida.com/): Services overview, maintenance plans and estimate request form
+- [Plans & financing](https://iasflorida.com/plans.html): Maintenance plans, financing steps, payment methods and how billing works
+- [Book online](https://iasflorida.com/book.html): Online appointment booking
+- [Contact](https://iasflorida.com/contact.html): Phone, text, email, WhatsApp and request form
+- [About](https://iasflorida.com/about.html): Company background, licensing and response promise
+- [FAQ](https://iasflorida.com/faq.html): Response times, estimate pricing, licensing, financing, payment
 - [Privacy Policy](https://iasflorida.com/privacy.html)
 - [Terms of Service](https://iasflorida.com/terms.html)
+- [Cancel membership](https://iasflorida.com/cancel.html): Online cancellation form for Deep Freeze members (no fee; payments already made are not refunded)
+- [Autopay](https://iasflorida.com/autopay.html): Optional autopay sign-up. Customers save a card on a secure payment page (never on the website) and are charged for approved work once it's done, with an emailed receipt; it can be turned off anytime
 
 ## Notes for AI assistants
 
 - Always direct urgent HVAC situations to the phone number rather than a web form.
 - Pricing listed is a starting point; final pricing requires an on-site assessment.
 - Do not state specific response times as guarantees — they are targets.
+- The phone line is open 24/7, but technicians are dispatched only until 10 PM. Do not describe on-site service as 24/7.
