@@ -95,8 +95,9 @@ PENDIENTES ANTES DE PUBLICAR
       publishing" y las fechas [DATE] se ven en el sitio
       público. Revisión por un abogado de Florida y luego
       quitar el aviso.
-  [ ] Probar los formularios y confirmar que llegan los
-      correos de Formspree
+  [x] Probar los formularios y confirmar que llegan los
+      correos de Formspree (9 nov: una prueba "TEST" por
+      formulario; Formspree marca el correo como enviado)
 
 
 DATOS DE CONTACTO CONFIGURADOS
