@@ -32,7 +32,7 @@ window.IAS_HCP = {
         Makes every "Book online" button open Housecall Pro booking,
         and shows it on the Book page (book.html). */
   booking: `
-
+<!--Start of Housecallpro Online booking button--> <button data-token="860e712062bf4670b4f789d9a9ec64de" data-orgname="IAS-Florida-LLC" class="hcp-button" onClick="HCPWidget.openModal()"> Book online </button> <script async src="https://online-booking.housecallpro.com/script.js?token=860e712062bf4670b4f789d9a9ec64de&orgName=IAS-Florida-LLC"> </script> <!--End of Housecallpro Online booking button-->
   `,
 
   /* 2) LEAD FORM — optional. Replaces the estimate request forms on the
@@ -45,7 +45,7 @@ window.IAS_HCP = {
   /* 3) WEBSITE CHAT — optional. Paste Housecall Pro's website chat bubble
         code. Then turn on CSR AI Chat (Team → AI Team → CSR AI) so the AI
         answers website chats too. The bubble shows on every page. */
-  chat: `
+  chat: `<script id="housecall-pro-chat-bubble" src="https://chat.housecallpro.com/proChat.js" type="text/javascript" data-color="#0E6FBE" data-organization="2243411d-9872-4e14-ad0e-f8c1db0f5156" defer></script>
 
   `,
 
