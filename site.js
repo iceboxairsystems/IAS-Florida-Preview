@@ -203,8 +203,14 @@ document.querySelectorAll('.chip input').forEach(input => {
 /* ═══════════════════════════════════════════════════════════════
    FORMULARIOS (Formspree)
    La dirección de envío está en action="" de cada <form>.
-     Inicio (cotización rápida)   →  xvkpgbey
-     Contacto y planes            →  xrpzbanw
+     Inicio (cotización rápida, respaldo) →  xvkpgbey  "Website – Home quote (backup)"
+     Contacto (respaldo)                  →  xbggnjkz  "Website – Contact (backup)"
+     Planes                               →  xrpzbanw  "Website – Plans request"
+     Pago automático (autopay)            →  mgaagezo  "Website – Autopay sign-up"
+     Cancelación de membresía             →  mvkkeoqr  "Website – Membership cancellation"
+   Todos envían a jobs@iasflorida.com (cuenta Formspree, plan gratis:
+   50 envíos al mes, el archivo guarda 30 días; el correo es el registro).
+   Los de "respaldo" solo se usan si se vacía leadForm en housecall-pro.js.
    ═══════════════════════════════════════════════════════════════ */
 const MSG = {
   es: { requerido:'Este campo es obligatorio.', nombre:'Escribe tu nombre completo.', telefono:'Escribe un teléfono válido de 10 dígitos.',
