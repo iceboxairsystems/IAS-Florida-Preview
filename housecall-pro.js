@@ -4,7 +4,7 @@
    ═════════════════════════════════════════════════════════════════════
 
    Every "Book online" button on every page of this site runs through
-   this file. While the two boxes below are empty, those buttons open the
+   this file. While the booking box below is empty, those buttons open the
    Calendly scheduler on book.html, same as before.
 
    STEP 1 — Copy the code from your Housecall Pro account
@@ -32,21 +32,25 @@ window.IAS_HCP = {
         Makes every "Book online" button open Housecall Pro booking,
         and shows it on the Book page (book.html). */
   booking: `
-
+<!--Start of Housecallpro Online booking button--> <button data-token="860e712062bf4670b4f789d9a9ec64de" data-orgname="IAS-Florida-LLC" class="hcp-button" onClick="HCPWidget.openModal()"> Book online </button> <script async src="https://online-booking.housecallpro.com/script.js?token=860e712062bf4670b4f789d9a9ec64de&orgName=IAS-Florida-LLC"> </script> <!--End of Housecallpro Online booking button-->
   `,
 
   /* 2) LEAD FORM — optional. Replaces the estimate request forms on the
         home page and the Contact page with your Housecall Pro lead form,
         so those requests land in Housecall Pro instead of email. */
   leadForm: `
-
+<!--Start of Housecallpro Lead Capture code--> <script async src="https://online-booking.housecallpro.com/script.js?token=afc45e729629477382151f047ebc5757&orgName=IAS-Florida-LLC"> </script> <iframe style="border: none;" id="hcp-lead-iframe" src="https://book.housecallpro.com/lead-form/IAS-Florida-LLC/afc45e729629477382151f047ebc5757"></iframe> <!--End of Housecallpro Lead Capture code-->
   `,
 
   /* 3) WEBSITE CHAT — optional. Paste Housecall Pro's website chat bubble
         code. Then turn on CSR AI Chat (Team → AI Team → CSR AI) so the AI
         answers website chats too. The bubble shows on every page. */
   chat: `
-
+<script id="housecall-pro-chat-bubble"
+              src="https://chat.housecallpro.com/proChat.js"
+              type="text/javascript"
+              data-color="#0E6FBE"
+              data-organization="2243411d-9872-4e14-ad0e-f8c1db0f5156" defer></script>
   `,
 
   /* Used only while box 1 is empty. */
@@ -108,6 +112,18 @@ window.IAS_HCP = {
   var lead = leer(cfg.leadForm);
   var chat = leer(cfg.chat);
 
+  /* The booking code and the lead form code load the same Housecall Pro
+     file (online-booking.housecallpro.com/script.js), each with its own key.
+     Only the first copy to run sets up the "Book online" pop-up, so the lead
+     form's copy could take it over. The booking copy already resizes the
+     lead form, so the lead form's copy is skipped when booking is pasted. */
+  function sinQuery(src) { return (src || '').split('?')[0]; }
+  var archivosReserva = booking.scripts.map(function (s) { return sinQuery(s.getAttribute('src')); });
+  lead.scripts = lead.scripts.filter(function (s) {
+    var src = s.getAttribute('src');
+    return !(src && archivosReserva.indexOf(sinQuery(src)) !== -1);
+  });
+
   /* ── Website chat bubble: load it once on every page ── */
   if (!chat.vacio) {
     if (chat.html) {
@@ -118,10 +134,34 @@ window.IAS_HCP = {
     }
     chat.scripts.forEach(function (s) { correrScript(s); });
     document.documentElement.classList.add('hcp-chat-on');
+
+    /* Keep the chat bubble (bottom-right corner) off the site's own buttons */
+    var cssChat = document.createElement('style');
+    cssChat.textContent =
+      /* Phones: while closed, sit above the bottom bar (Call now / Book online) */
+      '@media (max-width:860px){#proChatIframeContainer:not([style*="100vh"]){bottom:calc(72px + env(safe-area-inset-bottom))!important}}' +
+      /* Plans page: the cart button moves to the left corner */
+      'html.hcp-chat-on .cart-fab{right:auto;left:22px}' +
+      '@media (max-width:860px){html.hcp-chat-on .cart-fab{left:14px}}' +
+      /* The cookie notice stays on top until it's answered */
+      'html.hcp-chat-on .cookie-bar{z-index:1300}';
+    document.head.appendChild(cssChat);
   }
 
   /* ── Lead form: swap it into the estimate-form spots ── */
   if (!lead.vacio) {
+    /* Size the lead form to fit. Housecall Pro's own code only starts
+       listening once the whole page has loaded, and by then the form has
+       usually reported its size already, so it would stay 150px tall. */
+    window.addEventListener('message', function (e) {
+      var d = e.data;
+      if (e.origin !== 'https://book.housecallpro.com' || !d || d.type !== 'hcp:lead-capture-size') return;
+      if (!/^\d+(\.\d+)?px$/.test(String(d.value))) return;
+      document.querySelectorAll('[data-hcp-lead-slot] iframe').forEach(function (f) {
+        if (f.contentWindow === e.source) f.style.height = d.value;
+      });
+    });
+
     document.querySelectorAll('[data-hcp-lead-slot]').forEach(function (slot) {
       var destino = slot.querySelector('[data-hcp-lead-target]') || slot;
       if (lead.link && !lead.html) {
@@ -130,6 +170,8 @@ window.IAS_HCP = {
           (esES() ? 'Abrir el formulario' : 'Open the request form') + '</a></div>';
       } else {
         insertar(lead, destino);
+        /* Starting height until the form reports its real size */
+        destino.querySelectorAll('iframe').forEach(function (f) { if (!f.style.height) f.style.height = '540px'; });
       }
       slot.classList.add('hcp-on');
     });
@@ -184,7 +226,7 @@ window.IAS_HCP = {
     var el = e.target.closest ? e.target.closest('[data-book]') : null;
     if (!el) return;
     var via = '';
-    if (window.HCPWidget && typeof window.HCPWidget.openModal === 'function') {
+    if (!booking.vacio && window.HCPWidget && typeof window.HCPWidget.openModal === 'function') {
       e.preventDefault(); window.HCPWidget.openModal(); via = 'housecall_pro_modal';
     } else if (booking.link) {
       e.preventDefault(); window.open(booking.link, '_blank', 'noopener'); via = 'housecall_pro_link';
