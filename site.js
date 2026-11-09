@@ -54,7 +54,7 @@ const SITE_ES = {
   'svc.maint.t':'Mantenimiento','svc.maint.s':'Afinaciones dos veces al año',
   'svc.emerg.t':'Servicio de emergencia','svc.emerg.s':'Despacho diario hasta las 10 PM',
   'crumb.home':'Inicio','crumb.services':'Servicios',
-  'footer.blurb':'Contratista mecánico con licencia que atiende Miami-Dade y Broward con HVAC residencial y comercial y despacho de emergencias todos los días hasta las 10 PM.',
+  'footer.blurb':'Contratista de aire acondicionado con licencia que atiende Miami-Dade y Broward con HVAC residencial y comercial y despacho de emergencias todos los días hasta las 10 PM.',
   'footer.services':'Servicios','footer.company':'Empresa','footer.contact':'Contacto','footer.hours':'Oficina: lun–vie, 8 AM–5 PM',
   'footer.area':'Todo Miami-Dade y Broward',
   'footer.parent':'Una compañía de Icebox Air Systems',

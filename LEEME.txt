@@ -81,8 +81,8 @@ en site.js (SITE_ES).
 
 PENDIENTES ANTES DE PUBLICAR
 ────────────────────────────────────────────────────────────
-  [ ] Pegar el código de Housecall Pro en housecall-pro.js
-  [ ] Número de licencia real: buscar CMC-XXXXXX (pie de
+  [x] Pegar el código de Housecall Pro en housecall-pro.js
+  [ ] Número de licencia real: buscar CAC-XXXXXX (pie de
       página de todas las páginas)
   [ ] Google Analytics: reemplazar G-XXXXXXXXXX en site.js
       (un solo lugar para todo el sitio)
