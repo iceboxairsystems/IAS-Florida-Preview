@@ -41,6 +41,21 @@ Qué cambia al pegarlo:
   • El formulario de plans.html sigue llegando por correo
     (Formspree), porque envía los planes elegidos.
 
+Cómo funciona la agenda (ya conectada):
+  • "Book online" abre la ventana oficial de reservas de
+    Housecall Pro (cuenta IAS-Florida-LLC) sin salir del sitio.
+  • book.html la abre sola. También sirve cualquier dirección
+    del sitio terminada en ?booking (ej.: iasflorida.com/?booking).
+  • Si un navegador bloquea esa ventana (bloqueador de anuncios),
+    el botón abre la misma página de reservas de Housecall Pro en
+    otra pestaña. La reserva llega igual a Housecall Pro.
+  • La agenda de Housecall Pro está en inglés; book.html avisa
+    en español y da el teléfono.
+
+Lo que ve el cliente al reservar (servicios, precios y horarios)
+se configura DENTRO de Housecall Pro, no en este sitio. Ver la
+lista de precios (IAS-Florida-Price-List) para qué falta.
+
 Si alguien de Housecall Pro lo instala por ti: mándale este
 archivo housecall-pro.js y dile "paste the code in the booking
 box". No hace falta tocar ninguna otra página.
