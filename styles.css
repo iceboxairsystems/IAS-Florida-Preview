@@ -148,16 +148,29 @@ p{max-width:68ch}
 .header-phone b{font-size:15px;white-space:nowrap}
 .header-book{border:1px solid rgba(125,211,252,.4);background:rgba(125,211,252,.08)}
 .header-book:hover{background:rgba(125,211,252,.18);transform:none}
+/* Customer portal (Housecall Pro): header button, mobile menu row */
+.header-portal{padding:0 18px;gap:8px;color:rgba(255,255,255,.82)}
+.header-portal:hover{color:#fff}
+.header-portal svg{color:var(--ice)}
+[data-portal][hidden],li:has(>[data-portal][hidden]){display:none!important}
 .nav-toggle{display:none;width:46px;height:46px;border-radius:14px;place-items:center;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
 .mobile-menu{display:none;border-top:1px solid var(--line);padding:10px var(--gutter) 24px;max-height:calc(100vh - var(--header-h));overflow:auto;background:rgba(5,11,20,.97)}
 .mobile-menu.open{display:block}
 .mobile-menu a{display:block;padding:14px 2px;font-size:16.5px;font-weight:500;color:rgba(255,255,255,.82);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05)}
 .mobile-menu .m-sub{padding-left:18px;font-size:15px;color:rgba(255,255,255,.6)}
+.mobile-menu .m-portal{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;row-gap:2px;color:#fff}
+.mobile-menu .m-portal svg{color:var(--ice)}
+.mobile-menu .m-portal small{flex-basis:100%;padding-left:26px;font-size:13px;font-weight:400;color:var(--faint)}
 .mobile-menu .btn-row{margin-top:20px}
 .mobile-menu .btn{flex:1;display:inline-flex;padding:0 16px;border-bottom:0;font-size:15px;font-weight:700;color:#fff}
 .mobile-menu .lang{margin-top:18px;width:max-content}
+/* Portal button: icon only while the full menu shows (1261-1480px). Spanish labels are longer, so on wide screens Spanish keeps the icon-only button and the compact spacing used below 1320px. */
+@media (max-width:1480px) and (min-width:1261px){.header-portal{width:42px;padding:0}.header-portal span{display:none}}
+@media (min-width:1261px){html[lang="es"] .header-portal{width:42px;padding:0}html[lang="es"] .header-portal span,html[lang="es"] .header-phone small,html[lang="es"] .header-book svg{display:none}html[lang="es"] .header-inner{gap:18px}html[lang="es"] .header-actions{gap:10px}html[lang="es"] .main-nav>a,html[lang="es"] .nav-drop>button{padding:8px 9px}}
 @media (max-width:1320px){.header-phone small{display:none}.header-inner{gap:18px}.main-nav>a,.nav-drop>button{padding:8px 9px}}
 @media (max-width:1260px){.main-nav{display:none}.nav-toggle{display:grid}.header-inner{justify-content:space-between}}
+/* Below 900px the portal lives in the menu (hamburger) instead of the header bar. */
+@media (max-width:899px){.header-actions .header-portal{display:none}}
 @media (max-width:760px){.header-actions .lang,.header-actions .header-book{display:none}:root{--header-h:72px}}
 @media (max-width:560px){.header-phone{display:none}.logo-mark{width:44px;height:44px}}
 
