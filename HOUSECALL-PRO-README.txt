@@ -27,6 +27,8 @@ HOW TO INSTALL (about 2 minutes)
    leadForm:
    (Optional) Paste the website chat bubble code between the backticks
    after   chat:   It loads on every page.
+   (Already done) The Customer Portal code goes between the backticks
+   after   portal:   Paste the whole button code or just the link.
 4. Save and upload / commit that one file. Nothing else needs to change.
 
 Pasted code can be a <script> tag, a <button>, an embed block (iframe/div)
@@ -44,6 +46,9 @@ WHAT HAPPENS AUTOMATICALLY
   the home page) and contact.html. plans.html keeps its own form because
   it sends the plans the customer selected.
 - While nothing is pasted, booking falls back to Calendly.
+- The portal link powers "Log in" in the header, "Customer
+  portal" in the phone menu and footer, and the FAQ answer about
+  invoices. Empty the portal box to hide all of those links.
 
 
 HOW TO CHECK IT WORKS

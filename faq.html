@@ -120,6 +120,14 @@
   },
   {
    "@type": "Question",
+   "name": "Can I see my invoices and pay online?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Open our customer portal and enter the email or phone number on your account; we send you a secure sign-in link. From there you can view and pay invoices, review and approve estimates, and see your upcoming and past visits."
+   }
+  },
+  {
+   "@type": "Question",
    "name": "Can I cancel the Deep Freeze membership?",
    "acceptedAnswer": {
     "@type": "Answer",
@@ -179,6 +187,7 @@
     </nav>
     <div class="header-actions">
       <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+      <a class="btn btn-ghost btn-sm header-portal" href="https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0" target="_blank" rel="noopener" data-portal aria-label="Customer portal log in (opens in a new tab)" data-i18n-aria="portal.aria" title="Customer portal: invoices, estimates and payments" data-i18n-title="portal.title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="portal.login">Log in</span></a>
       <a class="btn btn-ghost btn-sm header-book" href="book.html" data-book><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-i18n="btn.book">Book online</span></a>
       <a class="header-phone" href="tel:+17863727744"><span class="ph-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="t"><small data-i18n="nav.calllabel">Line open 24/7</small><b>(786) 372-7744</b></span></a>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button>
@@ -194,6 +203,7 @@
     <a href="about.html" data-i18n="nav.about">About</a>
     <a href="faq.html" data-i18n="nav.faq">FAQ</a>
     <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    <a class="m-portal" href="https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0" target="_blank" rel="noopener" data-portal><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="portal.name">Customer portal</span><small data-i18n="portal.sub">Invoices, estimates &amp; payments</small></a>
     <div class="btn-row">
       <a class="btn btn-primary" href="tel:+17863727744"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>(786) 372-7744</span></a>
       <a class="btn btn-ghost" href="book.html" data-book><span data-i18n="btn.book">Book online</span></a>
@@ -266,6 +276,10 @@
         <div class="faq-a" id="fa11"><div data-i18n-html="faq.a11">On standard service calls, after the work is done, never before. You approve a written estimate first, and if the scope changes mid-job we stop and get your approval. Larger installations may require a deposit, stated in writing on the estimate.</div></div>
       </div>
       <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="fa15"><span data-i18n="faq.q15">Can I see my invoices and pay online?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a" id="fa15"><div data-i18n-html="faq.a15">Yes. Open our <a href="https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0" target="_blank" rel="noopener" data-portal>customer portal</a> and enter the email or phone number on your account; we send you a secure sign-in link. From there you can view and pay invoices, review and approve estimates, and see your upcoming and past visits.</div></div>
+      </div>
+      <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" aria-controls="fa12"><span data-i18n="faq.q12">Can I cancel the Deep Freeze membership?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-a" id="fa12"><div data-i18n-html="faq.a12">Yes, anytime, with no contract and no cancellation fee. Use our <a href="cancel.html">online cancellation form</a>, call (786) 372-7744 or email jobs@iasflorida.com, and we confirm in writing within one business day. It's billed monthly to the card on file; cancellation takes effect at the end of your current billing period, and payments already made are not refunded.</div></div>
       </div>
@@ -336,6 +350,7 @@
           <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
           <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
           <li><a href="book.html" data-book data-i18n="btn.book">Book online</a></li>
+          <li><a href="https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0" target="_blank" rel="noopener" data-portal data-i18n="portal.name">Customer portal</a></li>
         </ul>
       </div>
       <div>
@@ -412,6 +427,8 @@ window.PAGE_ES = {
  "faq.a10": "Visa, Mastercard, American Express y Discover, además de efectivo y cheque. Hay financiamiento en instalaciones de equipos nuevos. El pago automático es opcional: <a href=\"autopay.html\">actívalo aquí</a>.",
  "faq.q11": "¿Cuándo pago?",
  "faq.a11": "En visitas de servicio estándar, al terminar el trabajo, nunca antes. Primero apruebas una cotización por escrito, y si el alcance cambia a mitad del trabajo paramos y pedimos tu aprobación. Las instalaciones grandes pueden requerir un anticipo, indicado por escrito en la cotización.",
+ "faq.q15": "¿Puedo ver mis facturas y pagar en línea?",
+ "faq.a15": "Sí. Abre nuestro <a href=\"https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0\" target=\"_blank\" rel=\"noopener\" data-portal>portal del cliente</a> e ingresa el correo o teléfono de tu cuenta; te enviamos un enlace seguro para entrar. Ahí puedes ver y pagar facturas, revisar y aprobar cotizaciones, y ver tus visitas próximas y anteriores.",
  "faq.q12": "¿Puedo cancelar la membresía Deep Freeze?",
  "faq.a12": "Sí, cuando quieras, sin contrato y sin penalización. Usa nuestro <a href=\"cancel.html\">formulario de cancelación en línea</a>, llama al (786) 372-7744 o escribe a jobs@iasflorida.com, y te confirmamos por escrito en un día hábil. Se cobra mensualmente a la tarjeta registrada; la cancelación entra en vigor al final de tu período de cobro actual y los pagos ya hechos no se reembolsan.",
  "faq.g3": "Sobre nosotros",

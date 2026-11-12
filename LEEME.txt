@@ -40,6 +40,10 @@ Qué cambia al pegarlo:
     cotización del inicio y el de contact.html.
   • El formulario de plans.html sigue llegando por correo
     (Formspree), porque envía los planes elegidos.
+  • Portal del cliente (caja "portal", ya instalado): da el
+    enlace al botón "Log in" del encabezado, a "Customer
+    portal" del menú del celular y del pie, y a la pregunta de
+    facturas en faq.html. Si vacías la caja, esos enlaces se ocultan.
 
 Si alguien de Housecall Pro lo instala por ti: mándale este
 archivo housecall-pro.js y dile "paste the code in the booking

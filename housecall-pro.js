@@ -49,6 +49,16 @@ window.IAS_HCP = {
 
   `,
 
+  /* 4) CUSTOMER PORTAL — Housecall Pro's "Log in to portal" button code
+        (Settings → Customer Portal), or just the portal link.
+        Customers use it to see and pay invoices, approve estimates and
+        see their visits. It powers the "Log in" button in the
+        header, the "Customer portal" row in the phone menu, the link in
+        the footer and the answer on the FAQ page. */
+  portal: `
+<!--Start of Housecall Pro Customer Portal button--> <button data-token='824f5efdd8d64dba8c82836850420bf0' data-orgname='IAS-Florida-LLC' onClick="window.open('https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0', '_blank')" style='background-color: #0f77cc; border: 0; border-radius: 100px; color: #fff; cursor: pointer; padding: 12px 24px;'> LOG IN TO PORTAL </button> <!--End of Housecall Pro Customer Portal button-->
+  `,
+
   /* Used only while box 1 is empty. */
   fallbackCalendly: 'https://calendly.com/jobs-iasflorida/30min?hide_gdpr_banner=1&background_color=0a1929&text_color=ffffff&primary_color=fb923c'
 };
@@ -179,6 +189,24 @@ window.IAS_HCP = {
     document.body.appendChild(s);
   }
 
+  /* ── Customer portal: every [data-portal] link uses the link in box 4 ── */
+  var portalCode = (cfg.portal || '').trim();
+  var portalLink = (portalCode.match(/https:\/\/[^\s"'<>()]*customer_portal[^\s"'<>()]*/) ||
+                    portalCode.match(/https:\/\/[^\s"'<>()]+/) || [''])[0];
+  var portalLinks = document.querySelectorAll('[data-portal]');
+  function ponerPortal() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-portal]'), function (a) {
+      if (portalLink) a.setAttribute('href', portalLink);
+      else if (portalCode === '') a.hidden = true;         // box emptied → hide the links
+    });
+  }
+  ponerPortal();
+  document.addEventListener('ias:lang', ponerPortal);    // EN/ES switch rebuilds some links
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest ? e.target.closest('[data-portal]') : null;
+    if (el && typeof gtag === 'function') gtag('event', 'portal_click');
+  });
+
   /* ── Every [data-book] button/link on the site comes here ── */
   document.addEventListener('click', function (e) {
     var el = e.target.closest ? e.target.closest('[data-book]') : null;
@@ -208,7 +236,8 @@ window.IAS_HCP = {
           'Booking pop-up (HCPWidget): ' + (modal ? 'ready ✓' : (booking.vacio ? '—' : 'not loaded yet')),
           'Lead form box: ' + (lead.vacio ? 'empty → using the site\'s own forms' : 'pasted ✓'),
           'Lead form spots on this page: ' + document.querySelectorAll('[data-hcp-lead-slot]').length,
-          'Chat box: ' + (chat.vacio ? 'empty' : (chat.scripts.length ? chat.scripts.length + ' script(s) ✓' : 'pasted, but no script found'))
+          'Chat box: ' + (chat.vacio ? 'empty' : (chat.scripts.length ? chat.scripts.length + ' script(s) ✓' : 'pasted, but no script found')),
+          'Customer portal: ' + (portalLink ? 'link found ✓ (' + portalLinks.length + ' on this page)' : 'empty → portal links hidden')
         ];
         var box = document.createElement('div');
         box.setAttribute('role', 'status');

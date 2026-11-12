@@ -79,6 +79,8 @@ const SITE_ES = {
   'mb.call':'Llamar','mb.book':'Agendar',
   'hcp.cal.alt':'¿No carga? Abre la agenda en otra pestaña.',
   'top.1':'Emergencias todos los días hasta las 10 PM','top.2':'Cotización gratis al contratarnos','top.3':'Técnicos licenciados',
+  'portal.login':'Entrar','portal.name':'Portal del cliente','portal.sub':'Facturas, cotizaciones y pagos',
+  'portal.aria':'Portal del cliente (se abre en una pestaña nueva)','portal.title':'Portal del cliente: facturas, cotizaciones y pagos',
   'nav.calllabel':'Línea abierta 24/7','more':'Ver detalles',
   'seg.res':'Residencial','seg.com':'Comercial',
   'cta.eyebrow':'¿Listo?'
@@ -94,7 +96,7 @@ function applyLanguage(lang){
   almacen.guardar('ias_lang', currentLang);
   document.documentElement.lang = currentLang;
   const es = diccionarioES();
-  const tipos = [['data-i18n','text'],['data-i18n-html','html'],['data-i18n-ph','placeholder'],['data-i18n-aria','aria-label']];
+  const tipos = [['data-i18n','text'],['data-i18n-html','html'],['data-i18n-ph','placeholder'],['data-i18n-aria','aria-label'],['data-i18n-title','title']];
   tipos.forEach(([attr, modo]) => {
     document.querySelectorAll('[' + attr + ']').forEach(el => {
       const key = el.getAttribute(attr);
