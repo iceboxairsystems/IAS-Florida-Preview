@@ -41,7 +41,12 @@ WHAT HAPPENS AUTOMATICALLY
   HCPWidget.openModal() once the Housecall Pro script is loaded.
   If only a link is provided, the buttons open that link in a new tab.
 - book.html shows the embedded booking widget if the code includes one;
-  otherwise it shows a button that opens the Housecall Pro pop-up.
+  otherwise it opens the Housecall Pro pop-up by itself and shows a
+  button to reopen it. Any page address ending in ?booking also opens it.
+- If the pop-up can't load (ad blocker, very slow connection), the
+  buttons open the same Housecall Pro booking page
+  (book.housecallpro.com/book/<orgName>/<token>) in a new tab, built
+  from the pasted code. Bookings land in Housecall Pro either way.
 - Lead Form code replaces the estimate request forms on index.html (top of
   the home page) and contact.html. plans.html keeps its own form because
   it sends the plans the customer selected.

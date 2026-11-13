@@ -481,6 +481,8 @@ p{max-width:68ch}
 .book-ready{padding:64px 28px;text-align:center}
 .book-ready h2{font-size:32px;margin-bottom:10px}
 .book-ready p{color:var(--muted);margin:0 auto 26px}
+.book-ready .book-note{font-size:14px;max-width:440px;margin:18px auto 0}
+[data-book][aria-busy="true"]{cursor:progress;opacity:.75}
 .book-side h2{font-size:28px;margin-bottom:18px}
 .book-side .steps{grid-template-columns:1fr;gap:12px}
 .book-side .step{padding:20px 22px}

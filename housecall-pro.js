@@ -4,8 +4,10 @@
    ═════════════════════════════════════════════════════════════════════
 
    Every "Book online" button on every page of this site runs through
-   this file. While the booking box below is empty, those buttons open the
-   Calendly scheduler on book.html, same as before.
+   this file. With the booking code below, they open Housecall Pro's
+   booking pop-up (the Book page opens it by itself). If a browser blocks
+   the pop-up, they open the same Housecall Pro booking page in a new tab.
+   While the booking box is empty, they open Calendly on book.html instead.
 
    STEP 1 — Copy the code from your Housecall Pro account
      • Online booking:  Marketing → Online Booking → copy the code for
@@ -78,9 +80,26 @@ window.IAS_HCP = {
 
   function esES() { return document.documentElement.lang === 'es'; }
 
+  /* Which Housecall Pro account the pasted code belongs to: the button's
+     data-token / data-orgname, or token= / orgName= in its script address. */
+  function cuentaHCP(raiz) {
+    var b = raiz.querySelector('[data-token][data-orgname]');
+    if (b) return { token: b.getAttribute('data-token'), org: b.getAttribute('data-orgname') };
+    var s = raiz.querySelector('script[src*="housecallpro.com"]');
+    if (s) {
+      try {
+        var u = new URL(s.getAttribute('src'), location.href);
+        if (u.searchParams.get('token') && u.searchParams.get('orgName')) {
+          return { token: u.searchParams.get('token'), org: u.searchParams.get('orgName') };
+        }
+      } catch (err) { /* not a valid address: no account */ }
+    }
+    return null;
+  }
+
   /* Figure out what was pasted: scripts, visible HTML, and/or a link. */
   function leer(codigo) {
-    var r = { scripts: [], html: '', link: '', vacio: true, tieneEmbed: false };
+    var r = { scripts: [], html: '', link: '', vacio: true, tieneEmbed: false, cuenta: null };
     codigo = (codigo || '').trim();
     if (!codigo) return r;
     r.vacio = false;
@@ -91,6 +110,7 @@ window.IAS_HCP = {
     }
     var tpl = document.createElement('template');
     tpl.innerHTML = codigo;
+    r.cuenta = cuentaHCP(tpl.content);
     Array.prototype.forEach.call(tpl.content.querySelectorAll('script'), function (s) {
       r.scripts.push(s); s.parentNode.removeChild(s);
     });
@@ -101,14 +121,16 @@ window.IAS_HCP = {
     return r;
   }
 
-  /* Re-create a pasted <script> so the browser actually runs it. */
-  function correrScript(viejo, dentroDe) {
+  /* Re-create a pasted <script> so the browser actually runs it.
+     siFalla runs if the file can't be downloaded (ad blocker, network). */
+  function correrScript(viejo, dentroDe, siFalla) {
     var src = viejo.getAttribute('src');
     if (src && cargados[src]) return;
     if (src) cargados[src] = true;
     var s = document.createElement('script');
     Array.prototype.forEach.call(viejo.attributes, function (a) { s.setAttribute(a.name, a.value); });
     if (!src) s.text = viejo.textContent;
+    if (src && siFalla) s.addEventListener('error', siFalla);
     (dentroDe || document.body).appendChild(s);
   }
 
@@ -121,6 +143,17 @@ window.IAS_HCP = {
   var booking = leer(cfg.booking);
   var lead = leer(cfg.leadForm);
   var chat = leer(cfg.chat);
+
+  /* Housecall Pro's own booking page for this account: the same page its
+     "Book online" pop-up shows. Used only when the pop-up can't open (an ad
+     blocker, a very slow connection), so the button still reaches the real
+     booking system instead of doing nothing. */
+  booking.oficial = booking.link || (booking.cuenta
+    ? 'https://book.housecallpro.com/book/' + encodeURIComponent(booking.cuenta.org) + '/' +
+      encodeURIComponent(booking.cuenta.token) + '?v2=true'
+    : '');
+  var scriptReservaFallo = false;
+  function popupListo() { return !!(window.HCPWidget && typeof window.HCPWidget.openModal === 'function'); }
 
   /* The booking code and the lead form code load the same Housecall Pro
      file (online-booking.housecallpro.com/script.js), each with its own key.
@@ -189,28 +222,66 @@ window.IAS_HCP = {
 
   /* ── Booking: load Housecall Pro's script on every page ── */
   var slotReserva = document.querySelector('[data-hcp-booking-slot]');
+  var params = new URLSearchParams(location.search);
   if (!booking.vacio) {
     if (slotReserva && booking.tieneEmbed) {
       insertar(booking, slotReserva);                       // embedded widget on book.html
     } else {
-      booking.scripts.forEach(function (s) { correrScript(s); });
+      booking.scripts.forEach(function (s) {
+        correrScript(s, null, function () { scriptReservaFallo = true; });
+      });
       if (slotReserva) mostrarBotonReserva(slotReserva);
     }
   } else if (slotReserva) {
     mostrarCalendly(slotReserva);                            // fallback until HCP is pasted
   }
 
+  /* Calls alEstar() as soon as Housecall Pro's pop-up is ready, or
+     alFallar() if its file failed or didn't arrive within ms. */
+  function esperarPopup(alEstar, alFallar, ms) {
+    var inicio = Date.now();
+    (function revisar() {
+      if (popupListo()) return alEstar();
+      if (scriptReservaFallo || Date.now() - inicio > ms) return alFallar();
+      setTimeout(revisar, 120);
+    })();
+  }
+
+  /* Opens Housecall Pro's booking page in a new tab (same tab if the
+     browser blocks new tabs). */
+  function abrirAparte(url) {
+    var w = window.open(url, '_blank');
+    if (w) { try { w.opener = null; } catch (err) { /* already detached */ } }
+    else location.href = url;
+  }
+
+  /* On the Book page, open the booking pop-up by itself: that is what the
+     visitor came for. Housecall Pro's own file already does this on any
+     address ending in ?booking, so that case is left to it. */
+  if (slotReserva && !booking.vacio && booking.scripts.length &&
+      !params.has('booking') && !params.has('hcp-check')) {
+    esperarPopup(function () { window.HCPWidget.openModal(); }, function () {}, 8000);
+  }
+
   function mostrarBotonReserva(slot) {
+    var alterno = booking.oficial
+      ? '<p class="book-note"><a class="text-link" target="_blank" rel="noopener" href="' + booking.oficial +
+        '" data-i18n="hcp.ready.alt">Booking window not opening? Open it in a new tab.</a></p>'
+      : '';
     slot.innerHTML =
       '<div class="book-ready">' +
         '<h2 data-i18n="hcp.ready.t">Book your visit online</h2>' +
         '<p data-i18n="hcp.ready.p">Choose your service and a time that works. You\'ll get a confirmation right away.</p>' +
         '<a class="btn btn-primary" href="book.html" data-book><span data-i18n="hcp.ready.b">Open online booking</span></a>' +
+        alterno +
+        '<p class="book-note" data-i18n-html="hcp.ready.lang">Secure online booking powered by Housecall Pro.</p>' +
       '</div>';
     window.PAGE_ES = Object.assign(window.PAGE_ES || {}, {
       'hcp.ready.t': 'Agenda tu visita en línea',
       'hcp.ready.p': 'Elige tu servicio y un horario que te funcione. Recibirás la confirmación enseguida.',
-      'hcp.ready.b': 'Abrir la agenda en línea'
+      'hcp.ready.b': 'Abrir la agenda en línea',
+      'hcp.ready.alt': '¿No se abre la agenda? Ábrela en otra pestaña.',
+      'hcp.ready.lang': 'Agenda segura de Housecall Pro. La agenda está en inglés; si prefieres español, llámanos al <a class="text-link" href="tel:+17863727744">(786) 372-7744</a>.'
     });
     if (typeof applyLanguage === 'function') applyLanguage(document.documentElement.lang);
   }
@@ -266,20 +337,38 @@ window.IAS_HCP = {
   if (window.MutationObserver) new MutationObserver(nombrarMarcos).observe(document.body, { childList: true, subtree: true });
 
   /* ── Every [data-book] button/link on the site comes here ── */
+  var esperando = false;
+  function registrar(via) { if (typeof gtag === 'function') gtag('event', 'book_click', { method: via }); }
+
   document.addEventListener('click', function (e) {
     var el = e.target.closest ? e.target.closest('[data-book]') : null;
     if (!el) return;
-    var via = '';
-    if (!booking.vacio && window.HCPWidget && typeof window.HCPWidget.openModal === 'function') {
-      e.preventDefault(); window.HCPWidget.openModal(); via = 'housecall_pro_modal';
-    } else if (booking.link) {
-      e.preventDefault(); window.open(booking.link, '_blank', 'noopener'); via = 'housecall_pro_link';
+    /* Ctrl/Cmd/Shift-click: let the browser open book.html in a new tab
+       (the pop-up opens there by itself). */
+    if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    if (!booking.vacio && popupListo()) {
+      e.preventDefault(); window.HCPWidget.openModal(); registrar('housecall_pro_modal');
+    } else if (!booking.vacio && booking.oficial && (scriptReservaFallo || !booking.scripts.length)) {
+      e.preventDefault(); abrirAparte(booking.oficial); registrar('housecall_pro_link');
+    } else if (!booking.vacio && booking.oficial) {
+      /* Housecall Pro's file is still loading: wait a moment and open the
+         pop-up, or go straight to the booking page if it never arrives. */
+      e.preventDefault();
+      if (esperando) return;
+      esperando = true; el.setAttribute('aria-busy', 'true');
+      esperarPopup(function () {
+        esperando = false; el.removeAttribute('aria-busy');
+        window.HCPWidget.openModal(); registrar('housecall_pro_modal');
+      }, function () {
+        esperando = false; el.removeAttribute('aria-busy');
+        registrar('housecall_pro_link'); location.href = booking.oficial;
+      }, 4000);
     } else if (slotReserva) {
-      e.preventDefault(); slotReserva.scrollIntoView({ behavior: 'smooth', block: 'start' }); via = 'book_page';
+      e.preventDefault(); slotReserva.scrollIntoView({ behavior: 'smooth', block: 'start' }); registrar('book_page');
     } else {
-      via = 'book_page';                                     // normal link to book.html
+      registrar('book_page');                                // normal link to book.html
     }
-    if (typeof gtag === 'function') gtag('event', 'book_click', { method: via });
   });
 
   /* ── ?hcp-check : shows what this file found ── */
@@ -291,7 +380,10 @@ window.IAS_HCP = {
           '<b>Housecall Pro check</b>',
           'Booking box: ' + (booking.vacio ? 'empty → using Calendly' :
             (booking.link ? 'link found ✓' : booking.scripts.length + ' script(s), ' + (booking.tieneEmbed ? 'embed ✓' : 'no embed'))),
-          'Booking pop-up (HCPWidget): ' + (modal ? 'ready ✓' : (booking.vacio ? '—' : 'not loaded yet')),
+          'Booking pop-up (HCPWidget): ' + (modal ? 'ready ✓' : (booking.vacio ? '—' :
+            (scriptReservaFallo ? 'blocked → buttons open the booking page' : 'not loaded yet'))),
+          'Booking account: ' + (booking.cuenta ? booking.cuenta.org + ' ✓' : (booking.link ? 'link' : '—')),
+          'Backup booking page: ' + (booking.oficial ? '<a href="' + booking.oficial + '" target="_blank" rel="noopener">open ↗</a>' : '—'),
           'Lead form box: ' + (lead.vacio ? 'empty → using the site\'s own forms' : 'pasted ✓'),
           'Lead form spots on this page: ' + document.querySelectorAll('[data-hcp-lead-slot]').length,
           'Chat box: ' + (chat.vacio ? 'empty' : (chat.scripts.length ? chat.scripts.length + ' script(s) ✓' : 'pasted, but no script found')),
