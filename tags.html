@@ -137,15 +137,11 @@
   <div class="wrap tool">
     <div>
       <h2>Print QR tags</h2>
-      <p>Pick the units, then print with your browser (Ctrl+P on Windows, Cmd+P on Mac). Only the tags print, 9 per letter page at 2" × 3". Use weatherproof polyester or vinyl label sheets with a UV laminate.</p>
+      <p>Copy the unit IDs from the private Units sheet, paste them below, then print with your browser (Ctrl+P on Windows, Cmd+P on Mac). Only the tags print, 9 per letter page at 2" × 3". Use weatherproof polyester or vinyl label sheets with a UV laminate.</p>
       <p>Each code opens: <code id="tBase"></code>. Make sure that address is your final website before printing; printed tags can't be changed.</p>
     </div>
-    <div class="t-bar">
-      <div class="field"><label for="tFilter">Find units (ID, site, location)</label><input class="input" id="tFilter" type="search" autocomplete="off"></div>
-      <button type="button" class="btn btn-ghost btn-sm" id="tAll">Select all shown</button>
-      <button type="button" class="btn btn-ghost btn-sm" id="tNone">Clear</button>
-    </div>
-    <div class="t-list" id="tList"><p class="t-note" style="padding:14px">Loading equipment list…</p></div>
+    <div class="field"><label for="tIds">Unit IDs to print</label><textarea class="textarea" id="tIds" rows="4" spellcheck="false" aria-describedby="tIdsHelp"></textarea>
+      <p class="t-note" id="tIdsHelp">One per line or separated by commas. A range works too: <code>IAS-0001 to IAS-0040</code>.</p></div>
     <p class="t-count" id="tCount" role="status"></p>
     <div class="t-sheet" id="tSheet"></div>
 

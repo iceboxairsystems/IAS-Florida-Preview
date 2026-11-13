@@ -10,18 +10,19 @@
   if (!G || !app) return;
   var esc = G.esc;
   var id = (new URLSearchParams(location.search).get('id') || '').toUpperCase().trim();
-  var data = null, unit = null, history = [], unlocked = false, codeUsed = '', tries = 0, lockedUntil = 0, sent = null;
+  var data = null, unit = null, hasCode = false, history = [], unlocked = false, codeUsed = '', busy = false, waiting = false, setup = false;
 
   var TXT = {
     en: {
       loading: 'Loading unit…', unit: 'Unit', notFound: 'We could not find this unit',
       notFoundP: 'The tag may be new or the code may be damaged. Call us and read the ID printed on the tag.',
       noId: 'Scan the QR code on an IAS Florida equipment tag to open its record.',
-      loadErr: 'This page could not load the unit list. Check your connection and try again, or call us.',
+      loadErr: 'This page could not reach our records. Check your connection and try again, or call us.',
+      setup: 'Equipment records are being set up. Please call us for service.', checking: 'Checking…',
       maintained: 'This unit is maintained by IAS Florida under a Glacier commercial plan.',
       staffT: 'Building staff', staffP: 'Enter your site access code to see this unit\'s service history or request service. Your property manager has the code.',
       codeL: 'Site access code', unlock: 'Unlock', wrong: 'That code doesn\'t match this unit. Check it with your property manager.',
-      wait: 'Too many tries. Wait a minute, then try again.', noCode: 'This unit doesn\'t have an access code yet. Call us to request service.',
+      wait: 'Too many tries. This unit is locked for 10 minutes.', noCode: 'This unit doesn\'t have an access code yet. Call us to request service.',
       safety: 'Smell gas, see smoke or fire? Leave the area and call 911.', questions: 'Questions about this unit:',
       make: 'Make / model', serial: 'Serial', tons: 'Size', refr: 'Refrigerant', loc: 'Location', serves: 'Serves', installed: 'Installed', filters: 'Filters', site: 'Site',
       ton: 'ton', last: 'Last service', next: 'Next quarterly visit', none: 'No visits recorded yet.', history: 'Service history',
@@ -37,11 +38,12 @@
       loading: 'Cargando equipo…', unit: 'Equipo', notFound: 'No encontramos este equipo',
       notFoundP: 'La etiqueta puede ser nueva o el código puede estar dañado. Llámanos y léenos el número impreso en la etiqueta.',
       noId: 'Escanea el código QR de una etiqueta de equipo de IAS Florida para abrir su ficha.',
-      loadErr: 'No se pudo cargar la lista de equipos. Revisa tu conexión e inténtalo otra vez, o llámanos.',
+      loadErr: 'No se pudo conectar con nuestros registros. Revisa tu conexión e inténtalo otra vez, o llámanos.',
+      setup: 'Estamos preparando los registros de equipos. Llámanos para pedir servicio.', checking: 'Verificando…',
       maintained: 'IAS Florida da mantenimiento a este equipo con un plan comercial Glacier.',
       staffT: 'Personal del edificio', staffP: 'Escribe el código de acceso de tu edificio para ver el historial de servicio de este equipo o pedir servicio. Tu administrador de propiedad tiene el código.',
       codeL: 'Código de acceso del edificio', unlock: 'Desbloquear', wrong: 'Ese código no corresponde a este equipo. Verifícalo con tu administrador de propiedad.',
-      wait: 'Demasiados intentos. Espera un minuto y vuelve a intentarlo.', noCode: 'Este equipo todavía no tiene código de acceso. Llámanos para pedir servicio.',
+      wait: 'Demasiados intentos. Este equipo queda bloqueado por 10 minutos.', noCode: 'Este equipo todavía no tiene código de acceso. Llámanos para pedir servicio.',
       safety: '¿Huele a gas o ves humo o fuego? Sal del área y llama al 911.', questions: 'Preguntas sobre este equipo:',
       make: 'Marca / modelo', serial: 'Serie', tons: 'Capacidad', refr: 'Refrigerante', loc: 'Ubicación', serves: 'Da servicio a', installed: 'Instalado', filters: 'Filtros', site: 'Sitio',
       ton: 'toneladas', last: 'Último servicio', next: 'Próxima visita trimestral', none: 'Todavía no hay visitas registradas.', history: 'Historial de servicio',
@@ -73,6 +75,7 @@
 
   function render() {
     if (!id) { app.innerHTML = '<p class="u-lede">' + t('noId') + '</p>' + phoneLine(); return; }
+    if (setup) { app.innerHTML = '<div class="u-eyebrow">' + t('unit') + ' ' + esc(id) + '</div><p class="u-lede">' + t('setup') + '</p><p class="u-safety">' + t('safety') + '</p>' + phoneLine(); return; }
     if (!data) { app.innerHTML = '<p class="u-lede" role="status">' + t('loading') + '</p>'; return; }
     if (!unit) {
       app.innerHTML = '<div class="u-eyebrow">' + t('unit') + ' ' + esc(id) + '</div><h2 class="u-title">' + t('notFound') + '</h2><p class="u-lede">' + t('notFoundP') + '</p>' + phoneLine();
@@ -86,13 +89,12 @@
   }
 
   function lockedView() {
-    var waiting = Date.now() < lockedUntil;
-    if (!unit.access_hash) return '<div class="u-card"><p>' + t('noCode') + '</p></div><p class="u-safety">' + t('safety') + '</p>' + phoneLine();
+    if (!hasCode) return '<div class="u-card"><p>' + t('noCode') + '</p></div><p class="u-safety">' + t('safety') + '</p>' + phoneLine();
     return '<form class="u-card u-lock" id="uLock" novalidate>' +
       '<h3>' + t('staffT') + '</h3><p>' + t('staffP') + '</p>' +
       '<div class="u-row"><div class="field"><label for="uCode">' + t('codeL') + '</label>' +
-      '<input class="input" id="uCode" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" aria-describedby="uLockMsg"' + (waiting ? ' disabled' : '') + '></div>' +
-      '<button class="btn btn-primary" type="submit"' + (waiting ? ' disabled' : '') + '>' + t('unlock') + '</button></div>' +
+      '<input class="input" id="uCode" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" aria-describedby="uLockMsg"' + '></div>' +
+      '<button class="btn btn-primary" type="submit">' + t('unlock') + '</button></div>' +
       '<p class="u-err" id="uLockMsg" role="alert">' + (waiting ? t('wait') : '') + '</p>' +
       '</form><p class="u-safety">' + t('safety') + '</p>' + phoneLine();
   }
@@ -101,21 +103,34 @@
     var f = document.getElementById('uLock'); if (!f) return;
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      var input = document.getElementById('uCode'), msg = document.getElementById('uLockMsg');
-      if (Date.now() < lockedUntil) { msg.textContent = t('wait'); return; }
-      var code = input.value;
-      G.hashCode(code).then(function (h) {
-        if (h === String(unit.access_hash).toLowerCase()) {
-          unlocked = true; codeUsed = G.cleanCode(code); tries = 0;
-          ss(false, 'glacier_ok_' + h, codeUsed);
-          render();
-          var t1 = document.getElementById('uTop'); if (t1) t1.focus();
-        } else {
-          tries++;
-          if (tries >= 5) { lockedUntil = Date.now() + 60000; tries = 0; setTimeout(render, 60500); render(); var m = document.getElementById('uLockMsg'); if (m) m.textContent = t('wait'); return; }
-          input.setAttribute('aria-invalid', 'true'); msg.textContent = t('wrong'); input.select();
-        }
+      if (busy) return;
+      var input = document.getElementById('uCode'), msg = document.getElementById('uLockMsg'), btn = f.querySelector('button[type=submit]');
+      var code = G.cleanCode(input.value);
+      if (!code) { input.setAttribute('aria-invalid', 'true'); msg.textContent = t('wrong'); input.focus(); return; }
+      busy = true; btn.disabled = true; btn.textContent = t('checking');
+      tryUnlock(code).then(function (ok) {
+        busy = false;
+        if (ok) { var t1 = document.getElementById('uTop'); if (t1) t1.focus(); return; }
+        var i2 = document.getElementById('uCode'), m2 = document.getElementById('uLockMsg');
+        if (i2) { i2.setAttribute('aria-invalid', 'true'); i2.select(); }
+        if (m2) m2.textContent = waiting ? t('wait') : t('wrong');
+      }).catch(function () {
+        busy = false; btn.disabled = false; btn.textContent = t('unlock'); msg.textContent = t('loadErr');
       });
+    });
+  }
+
+  /* The code is checked by the secure lookup (Google Apps Script), never here. */
+  function tryUnlock(code) {
+    return G.unlock(id, code).then(function (res) {
+      if (res && res.ok && !res.locked) {
+        unlocked = true; codeUsed = code; unit = res.unit; history = res.visits || []; waiting = false;
+        ss(false, 'glacier_code_' + id, code);
+        render(); return true;
+      }
+      waiting = !!(res && res.error === 'too_many');
+      if (res && res.error === 'no_code') hasCode = false;
+      render(); return false;
     });
   }
 
@@ -152,7 +167,7 @@
     var note = document.getElementById('uEmNote');
     f.querySelectorAll('input[name=urg]').forEach(function (r) { r.addEventListener('change', function () { note.hidden = f.urg.value !== '3'; }); });
     document.getElementById('uRelock').addEventListener('click', function () {
-      try { Object.keys(sessionStorage).forEach(function (k) { if (k.indexOf('glacier_ok_') === 0) sessionStorage.removeItem(k); }); } catch (e) {}
+      try { Object.keys(sessionStorage).forEach(function (k) { if (k.indexOf('glacier_code_') === 0) sessionStorage.removeItem(k); }); } catch (e) {}
       unlocked = false; codeUsed = ''; render(); var c = document.getElementById('uCode'); if (c) c.focus();
     });
     f.addEventListener('submit', function (e) {
@@ -185,15 +200,14 @@
   render();
   document.addEventListener('ias:lang', function () { if (!document.getElementById('uOut') || document.getElementById('uOut').hidden) render(); });
   if (!id) return;
-  G.load().then(function (d) {
-    data = d;
-    unit = d.units.filter(function (u) { return u.unit_id === id; })[0] || null;
-    history = unit ? d.visits.filter(function (v) { return v.unit_id === id; }) : [];
-    if (unit && unit.access_hash && ss(true, 'glacier_ok_' + String(unit.access_hash).toLowerCase())) {
-      unlocked = true; codeUsed = ss(true, 'glacier_ok_' + String(unit.access_hash).toLowerCase());
-    }
+  G.lookup(id).then(function (res) {
+    data = true;
+    if (res && res.ok) { unit = res.unit; hasCode = !!res.hasCode; } else unit = null;
+    var saved = ss(true, 'glacier_code_' + id);
     render();
-  }).catch(function () {
+    if (unit && hasCode && saved) return tryUnlock(saved);
+  }).catch(function (err) {
+    if (err && err.message === 'not_configured') { setup = true; render(); return; }
     app.innerHTML = '<div class="u-eyebrow">' + t('unit') + ' ' + esc(id) + '</div><p class="u-lede" role="alert">' + t('loadErr') + '</p>' + phoneLine();
   });
 })();
