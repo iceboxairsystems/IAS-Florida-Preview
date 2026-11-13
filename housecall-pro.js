@@ -249,6 +249,22 @@ window.IAS_HCP = {
     if (el && typeof gtag === 'function') gtag('event', 'portal_click');
   });
 
+  /* ── Accessibility: give Housecall Pro's frames a name screen readers can announce ── */
+  function nombrarMarcos() {
+    var es = esES();
+    Array.prototype.forEach.call(document.querySelectorAll('iframe'), function (f) {
+      var src = f.getAttribute('src') || '', id = f.id || '', t;
+      if (id === 'proChatIframe' || /chat\.housecallpro/.test(src)) t = es ? 'Chat con IAS Florida' : 'Chat with IAS Florida';
+      else if (id === 'hcp-lead-iframe' || /lead/i.test(id + src)) t = es ? 'Formulario para pedir una cotización' : 'Request an estimate form';
+      else if (/housecallpro/.test(src)) t = es ? 'Agenda en línea de IAS Florida' : 'IAS Florida online booking';
+      else if (/calendly/.test(src)) t = es ? 'Agenda en línea' : 'Online scheduler';
+      if (t && f.getAttribute('title') !== t) f.setAttribute('title', t);
+    });
+  }
+  nombrarMarcos();
+  document.addEventListener('ias:lang', nombrarMarcos);
+  if (window.MutationObserver) new MutationObserver(nombrarMarcos).observe(document.body, { childList: true, subtree: true });
+
   /* ── Every [data-book] button/link on the site comes here ── */
   document.addEventListener('click', function (e) {
     var el = e.target.closest ? e.target.closest('[data-book]') : null;

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessibility Statement | IAS Florida</title>
+<meta name="description" content="How IAS Florida makes its website accessible to people with disabilities, the standard we follow (WCAG 2.1 AA), and how to get help or report a problem.">
+<link rel="canonical" href="https://iasflorida.com/accessibility.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#050b14">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IAS Florida">
+<meta property="og:url" content="https://iasflorida.com/accessibility.html">
+<meta property="og:title" content="Accessibility Statement | IAS Florida">
+<meta property="og:description" content="How IAS Florida makes its website accessible to people with disabilities, the standard we follow (WCAG 2.1 AA), and how to get help or report a problem.">
+<meta property="og:image" content="https://iasflorida.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://iasflorida.com/og-image.jpg">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* Estilos propios de las páginas legales */
+.legal{max-width:800px}
+.legal h2{font-size:26px;margin:46px 0 14px;line-height:1.25;scroll-margin-top:96px}
+.legal h2:first-of-type{margin-top:0}
+.legal h3{font-family:var(--sans);font-size:16.5px;font-weight:800;color:#fff;margin:26px 0 10px;letter-spacing:0}
+.legal p{color:#c3d0dc;line-height:1.8;margin-bottom:16px;max-width:none}
+.legal ul{list-style:none;margin:0 0 20px}
+.legal li{color:#c3d0dc;line-height:1.75;padding-left:22px;position:relative;margin-bottom:10px}
+.legal li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--ice)}
+.legal a{color:var(--ice)}
+.legal strong{color:#fff}
+.fill{color:var(--sun);font-weight:700;background:rgba(251,146,60,.12);padding:1px 7px;border-radius:5px;font-size:.92em}
+.updated{font-size:14px;color:var(--muted);margin-bottom:28px}
+.legal-note{max-width:800px;padding:22px 26px;border-radius:var(--r-md);background:rgba(251,146,60,.09);border:1px solid rgba(251,146,60,.3);margin-bottom:36px}
+.legal-note p{color:#fde3b6;font-size:14.5px;margin:0 0 10px}
+.legal-note p:last-child{margin-bottom:0}
+.toc{max-width:800px;padding:24px 28px;border-radius:var(--r-md);background:var(--night-2);border:1px solid var(--line-d);margin-bottom:44px}
+.toc h4{font-family:var(--sans);font-size:14px;font-weight:800;margin-bottom:14px;letter-spacing:0}
+.toc ol{counter-reset:t;list-style:none;columns:2;column-gap:34px}
+.toc li{counter-increment:t;padding-left:28px;position:relative;margin-bottom:8px;break-inside:avoid}
+.toc li::before{content:counter(t);position:absolute;left:0;top:1px;font-size:13px;font-weight:800;color:var(--ice)}
+.toc a{color:#c3d0dc;font-size:15px;text-decoration:none}
+.toc a:hover{color:#fff;text-decoration:underline}
+.callout{padding:22px 26px;border-radius:var(--r-md);background:rgba(125,211,252,.07);border:1px solid rgba(125,211,252,.25);margin:24px 0}
+.callout p{margin-bottom:0;color:#dbe7f2}
+.cap{padding:24px 28px;border-radius:var(--r-md);background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.3);margin:24px 0}
+.cap p{margin-bottom:0;color:#f3e3d3}
+@media(max-width:640px){.toc ol{columns:1}.legal h2{font-size:23px}.toc,.legal-note{padding:18px 20px}}
+html[lang="es"] .lang-en{display:none}
+html:not([lang="es"]) .lang-es{display:none}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grid-pattern" aria-hidden="true"></div>
+<div class="snow" aria-hidden="true"></div>
+<a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
+<div class="topbar">
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="top.1">Emergency dispatch daily until 10 PM</span></span><i></i>
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="top.2">Free estimate when you hire us</span></span><i></i>
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg><span data-i18n="top.3">Licensed Technicians</span></span>
+</div>
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a href="index.html" class="logo" aria-label="IAS Florida, home">
+      <span class="logo-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="19" y2="19"/><line x1="5" y1="19" x2="19" y2="5"/></svg></span>
+      <span class="logo-name"><b>IAS</b><small>FLORIDA</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <div class="nav-drop">
+        <button type="button" aria-expanded="false" aria-controls="svcMenu"><span data-i18n="nav.services">Services</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="drop-menu" id="svcMenu">
+          <a href="ac-repair.html"><span class="tile t-ice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span><b data-i18n="svc.repair.t">AC repair</b><span class="s" data-i18n="svc.repair.s">Same-day diagnosis and repair</span></span></a>
+          <a href="ac-installation.html"><span class="tile t-indigo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="9" cy="12" r="4"/><line x1="9" y1="8" x2="9" y2="16"/><line x1="5" y1="12" x2="13" y2="12"/><line x1="16" y1="9" x2="19" y2="9"/><line x1="16" y1="12" x2="19" y2="12"/><line x1="16" y1="15" x2="19" y2="15"/></svg></span><span><b data-i18n="svc.install.t">New installation</b><span class="s" data-i18n="svc.install.s">Replacements and new systems, sized right</span></span></a>
+          <a href="ac-maintenance.html"><span class="tile t-mint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><span><b data-i18n="svc.maint.t">Maintenance</b><span class="s" data-i18n="svc.maint.s">Tune-ups twice a year</span></span></a>
+          <a href="emergency-hvac.html"><span class="tile t-hot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span><b data-i18n="svc.emerg.t">Emergency service</b><span class="s" data-i18n="svc.emerg.s">Dispatch daily until 10 PM</span></span></a>
+        </div>
+      </div>
+      <a href="plans.html" data-i18n="nav.plans">Plans &amp; financing</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+      <a class="btn btn-ghost btn-sm header-portal" href="https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0" target="_blank" rel="noopener" data-portal aria-label="Customer portal log in (opens in a new tab)" data-i18n-aria="portal.aria" title="Customer portal: invoices, estimates and payments" data-i18n-title="portal.title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="portal.login">Log in</span></a>
+      <a class="btn btn-ghost btn-sm header-book" href="book.html" data-book><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-i18n="btn.book">Book online</span></a>
+      <a class="header-phone" href="tel:+17863727744"><span class="ph-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="t"><small data-i18n="nav.calllabel">Line open 24/7</small><b>(786) 372-7744</b></span></a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a class="m-sub" href="ac-repair.html" data-i18n="svc.repair.t">AC repair</a>
+    <a class="m-sub" href="ac-installation.html" data-i18n="svc.install.t">New installation</a>
+    <a class="m-sub" href="ac-maintenance.html" data-i18n="svc.maint.t">Maintenance</a>
+    <a class="m-sub" href="emergency-hvac.html" data-i18n="svc.emerg.t">Emergency service</a>
+    <a href="plans.html" data-i18n="nav.plans">Plans &amp; financing</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+    <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    <a class="m-portal" href="https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0" target="_blank" rel="noopener" data-portal><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="portal.name">Customer portal</span><small data-i18n="portal.sub">Invoices, estimates &amp; payments</small></a>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="tel:+17863727744"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>(786) 372-7744</span></a>
+      <a class="btn btn-ghost" href="book.html" data-book><span data-i18n="btn.book">Book online</span></a>
+    </div>
+    <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+  </div>
+</header>
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html" data-i18n="crumb.home">Home</a><span aria-hidden="true">/</span><span aria-current="page" data-i18n="pg.crumb">Accessibility</span></nav>
+    <div class="eyebrow"><span class="line"></span><span class="text" data-i18n="pg.legal">Legal</span></div>
+    <h1 data-i18n="pg.h1">Accessibility Statement</h1>
+  </div>
+</section>
+<section class="band legal-page">
+  <div class="wrap">
+  <div class="lang-en" lang="en">
+    <div class="updated">Last reviewed: November 12, 2026</div>
+    <div class="legal">
+      <p>IAS Florida LLC wants everyone, including people with disabilities, to be able to use our website, request service and reach our team. We work to make this site accessible and keep improving it.</p>
+      <h2 id="a1">Our standard</h2>
+      <p>We work to conform to the <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</a>, published by the World Wide Web Consortium (W3C). These guidelines explain how to make web content easier to use for people with visual, hearing, motor and cognitive disabilities.</p>
+      <h2 id="a2">What we have done</h2>
+      <ul>
+        <li>Every menu, button, form and pop-up works with a keyboard alone, and the item in focus is clearly outlined.</li>
+        <li>A “Skip to content” link lets keyboard and screen reader users jump past the menu.</li>
+        <li>Text and buttons meet WCAG contrast ratios against their backgrounds.</li>
+        <li>Images that carry meaning have text descriptions; decorative images are hidden from screen readers.</li>
+        <li>Form fields have labels, required fields are marked, and error messages are announced to screen readers.</li>
+        <li>Each page declares its language, and the full site is available in Spanish with the EN / ES switch.</li>
+        <li>Decorative animation stops within five seconds, and it does not run at all if your device asks for reduced motion.</li>
+        <li>Pages work when zoomed to 200% and on phones, tablets and computers.</li>
+        <li>Links that open a new tab say so to screen readers.</li>
+      </ul>
+      <h2 id="a3">How we test</h2>
+      <p>We check every page in English and Spanish with automated accessibility testing (axe-core) against WCAG 2.1 Level AA, and we review keyboard navigation, focus order, menus, forms and pop-ups by hand. We review the site again whenever we change it.</p>
+      <h2 id="a4">Tools provided by other companies</h2>
+      <p>Online booking, website chat, the estimate request form and the customer portal are provided by Housecall Pro, our scheduling and billing company. We choose these tools with accessibility in mind and label them for screen readers, but we do not control all of their code. If any of them gives you trouble, call or text us and we will book your visit, answer your question or help with your account directly.</p>
+      <h2 id="a5">Need help or found a problem?</h2>
+      <p>If something on this site is hard to use, or you need information in another format, please tell us. Let us know the page and what happened, and we will respond within two business days.</p>
+      <div class="callout"><p><strong>Phone (24/7 line):</strong> <a href="tel:+17863727744">(786) 372-7744</a><br>
+      <strong>Text:</strong> <a href="sms:+17868226849">(786) 822-6849</a><br>
+      <strong>Email:</strong> <a href="mailto:jobs@iasflorida.com">jobs@iasflorida.com</a><br>
+      <strong>Mail:</strong> IAS Florida LLC, 7901 4th St N, #9110, St. Petersburg, FL 33702</p></div>
+      <p>You can always request service, get an estimate or ask about your account by phone, with no need to use the website.</p>
+    </div>
+  </div>
+
+  <div class="lang-es" lang="es">
+    <div class="updated">Última revisión: 12 de noviembre de 2026</div>
+    <div class="legal">
+      <p>En IAS Florida LLC queremos que todas las personas, incluidas las personas con discapacidad, puedan usar nuestro sitio web, pedir servicio y comunicarse con nuestro equipo. Trabajamos para que este sitio sea accesible y seguimos mejorándolo.</p>
+      <h2 id="e1">Nuestro estándar</h2>
+      <p>Trabajamos para cumplir con las <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">Pautas de Accesibilidad para el Contenido Web (WCAG) 2.1, nivel AA</a>, publicadas por el World Wide Web Consortium (W3C). Estas pautas explican cómo hacer el contenido web más fácil de usar para personas con discapacidades visuales, auditivas, motoras y cognitivas.</p>
+      <h2 id="e2">Lo que hemos hecho</h2>
+      <ul>
+        <li>Todos los menús, botones, formularios y ventanas funcionan solo con el teclado, y el elemento seleccionado se marca con claridad.</li>
+        <li>Un enlace “Saltar al contenido” permite a usuarios de teclado y lectores de pantalla pasar directo al contenido.</li>
+        <li>Los textos y botones cumplen con los niveles de contraste de WCAG frente a su fondo.</li>
+        <li>Las imágenes con información tienen descripción en texto; las decorativas se ocultan a los lectores de pantalla.</li>
+        <li>Los campos de los formularios tienen etiquetas, los obligatorios están marcados y los errores se anuncian a los lectores de pantalla.</li>
+        <li>Cada página indica su idioma, y todo el sitio está disponible en español con el selector EN / ES.</li>
+        <li>Las animaciones decorativas se detienen en menos de cinco segundos y no aparecen si tu equipo pide reducir el movimiento.</li>
+        <li>Las páginas funcionan con zoom al 200% y en teléfonos, tabletas y computadoras.</li>
+        <li>Los enlaces que abren una pestaña nueva lo anuncian a los lectores de pantalla.</li>
+      </ul>
+      <h2 id="e3">Cómo lo revisamos</h2>
+      <p>Revisamos cada página en inglés y en español con pruebas automáticas de accesibilidad (axe-core) según WCAG 2.1 nivel AA, y comprobamos a mano la navegación con teclado, el orden del foco, los menús, los formularios y las ventanas. Volvemos a revisar el sitio cada vez que lo cambiamos.</p>
+      <h2 id="e4">Herramientas de otras empresas</h2>
+      <p>La agenda en línea, el chat del sitio, el formulario de cotización y el portal del cliente los ofrece Housecall Pro, nuestra empresa de agenda y facturación. Elegimos estas herramientas pensando en la accesibilidad y las identificamos para los lectores de pantalla, pero no controlamos todo su código. Si alguna te da problemas, llámanos o escríbenos y te agendamos la visita, respondemos tu pregunta o te ayudamos con tu cuenta directamente.</p>
+      <h2 id="e5">¿Necesitas ayuda o encontraste un problema?</h2>
+      <p>Si algo en este sitio es difícil de usar, o necesitas la información en otro formato, avísanos. Dinos la página y lo que pasó, y te respondemos en un plazo de dos días hábiles.</p>
+      <div class="callout"><p><strong>Teléfono (línea 24/7):</strong> <a href="tel:+17863727744">(786) 372-7744</a><br>
+      <strong>Mensaje de texto:</strong> <a href="sms:+17868226849">(786) 822-6849</a><br>
+      <strong>Correo:</strong> <a href="mailto:jobs@iasflorida.com">jobs@iasflorida.com</a><br>
+      <strong>Correo postal:</strong> IAS Florida LLC, 7901 4th St N, #9110, St. Petersburg, FL 33702</p></div>
+      <p>Siempre puedes pedir servicio, una cotización o información de tu cuenta por teléfono, sin necesidad de usar el sitio web.</p>
+    </div>
+  </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="index.html" class="logo" aria-label="IAS Florida, home">
+          <span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="19" y2="19"/><line x1="5" y1="19" x2="19" y2="5"/></svg></span>
+          <span class="logo-name"><b>IAS</b><small>FLORIDA</small></span>
+        </a>
+        <p data-i18n="footer.blurb">Licensed air-conditioning contractor serving Miami-Dade and Broward with residential and commercial HVAC and emergency dispatch every day until 10 PM.</p>
+        <!-- Perfiles sociales. Borra los que no uses: un enlace roto resta confianza.
+             GOOGLE BUSINESS: cuando tu ficha esté verificada, agrega aquí otro <a> con su enlace de Maps. -->
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=61593211452054" target="_blank" rel="noopener" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/iasfloridallc" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a>
+          <a href="https://www.tiktok.com/@iasflorida" target="_blank" rel="noopener" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h2 data-i18n="footer.services">Services</h2>
+        <ul>
+          <li><a href="ac-repair.html" data-i18n="svc.repair.t">AC repair</a></li>
+          <li><a href="ac-installation.html" data-i18n="svc.install.t">New installation</a></li>
+          <li><a href="ac-maintenance.html" data-i18n="svc.maint.t">Maintenance</a></li>
+          <li><a href="emergency-hvac.html" data-i18n="svc.emerg.t">Emergency service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-i18n="footer.company">Company</h2>
+        <ul>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="plans.html" data-i18n="nav.plans">Plans &amp; financing</a></li>
+          <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+          <li><a href="book.html" data-book data-i18n="btn.book">Book online</a></li>
+          <li><a href="https://client.housecallpro.com/customer_portal/request-link?token=824f5efdd8d64dba8c82836850420bf0" target="_blank" rel="noopener" data-portal data-i18n="portal.name">Customer portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-i18n="footer.contact">Contact</h2>
+        <ul>
+          <li><a href="tel:+17863727744">(786) 372-7744</a></li>
+          <li><a href="mailto:jobs@iasflorida.com">jobs@iasflorida.com</a></li>
+          <li><span style="color:rgba(255,255,255,.62);font-size:14px" data-i18n="footer.area">All of Miami-Dade and Broward</span></li>
+          <li><span style="color:rgba(255,255,255,.62);font-size:14px" data-i18n="footer.hours">Office: Mon–Fri, 8 AM–5 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <!-- ⚠️ REEMPLAZAR: número de licencia real (CAC-XXXXXX) -->
+      <span>&copy; 2026 IAS Florida LLC. <span data-i18n="footer.parent">An Icebox Air Systems company</span>. Lic. #CAC-XXXXXX</span>
+      <span><a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a> &nbsp;&nbsp; <a href="terms.html" data-i18n="footer.terms">Terms of Service</a> &nbsp;&nbsp; <a href="cancel.html" data-i18n="footer.cancel">Cancel membership</a> &nbsp;&nbsp; <a href="autopay.html" data-i18n="footer.autopay">Autopay</a> &nbsp;&nbsp; <a href="accessibility.html" data-i18n="footer.a11y">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn btn-primary" href="tel:+17863727744"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-i18n="mb.call">Call now</span></a>
+  <a class="btn btn-ghost" href="book.html" data-book><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-i18n="mb.book">Book online</span></a>
+</div>
+
+<div class="cookie-bar" id="cookieBar" role="region" aria-label="Cookies">
+  <p data-i18n-html="cookie.body"><b>We use cookies.</b> A little browser storage to remember your language, and optional analytics to see which pages help. We never sell your data. <a href="privacy.html">Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="btn btn-sm btn-ghost" id="cookieDecline" data-i18n="cookie.decline">Essential only</button>
+    <button type="button" class="btn btn-sm btn-primary" id="cookieAccept" data-i18n="cookie.accept">Accept all</button>
+  </div>
+</div>
+
+<div class="modal" id="thanksModal" role="dialog" aria-modal="true" aria-labelledby="thanksTitle">
+  <div class="modal-box">
+    <div class="ok"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h2 id="thanksTitle" data-i18n="modal.title">Thank you for trusting IAS Florida</h2>
+    <p data-i18n="modal.p">We received your request. A dispatcher will call you back shortly; during business hours, usually within 15 minutes.</p>
+    <button type="button" class="btn btn-primary" id="thanksBtn" data-i18n="modal.btn">Perfect, thanks</button>
+    <span class="modal-tel" data-i18n-html="modal.tel">Urgent? Call <a href="tel:+17863727744">(786) 372-7744</a>. We dispatch emergencies every day until 10 PM.</span>
+  </div>
+</div>
+
+<script>
+/* Textos en español de esta página */
+window.PAGE_ES = {
+ "pg.crumb": "Accesibilidad",
+ "pg.h1": "Declaración de accesibilidad",
+ "pg.legal": "Legal"
+};
+</script>
+<script src="site.js" defer></script>
+<!-- Housecall Pro: todo se conecta desde housecall-pro.js -->
+<script src="housecall-pro.js" defer></script>
+</body>
+</html>

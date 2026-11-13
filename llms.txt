@@ -40,6 +40,7 @@ Commercial (businesses, offices and multi-unit buildings):
 - [About](https://iasflorida.com/about.html): Company background, licensing and response promise
 - [FAQ](https://iasflorida.com/faq.html): Response times, estimate pricing, licensing, financing, payment
 - [Privacy Policy](https://iasflorida.com/privacy.html)
+- [Accessibility Statement](https://iasflorida.com/accessibility.html): WCAG 2.1 AA commitment and how to get help
 - [Terms of Service](https://iasflorida.com/terms.html)
 - [Cancel membership](https://iasflorida.com/cancel.html): Online cancellation form for Deep Freeze members (no fee; payments already made are not refunded)
 - [Autopay](https://iasflorida.com/autopay.html): Optional autopay sign-up. Customers save a card on a secure payment page (never on the website) and are charged for approved work once it's done, with an emailed receipt; it can be turned off anytime
