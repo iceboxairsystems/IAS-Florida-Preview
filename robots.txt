@@ -5,5 +5,6 @@ Allow: /
 # Páginas sin valor para buscadores
 Disallow: /thank-you.html
 Disallow: /404.html
+Disallow: /tags.html
 
 Sitemap: https://iasflorida.com/sitemap.xml

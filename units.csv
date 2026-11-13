@@ -1,0 +1,2 @@
+unit_id,site,type,make,model,serial,tonnage,refrigerant,location,serves,install_year,filter_size,filter_qty,access_hash
+IAS-0000,Example site (demo),Rooftop unit,Carrier,50TC-D08,EXAMPLE-0000,7.5,R-410A,"Roof, east side",Suite 200,2017,20x25x2,4,273121c7ef43a60372ee91a53818077ac868ed65e33279523d118fa7b899e982
