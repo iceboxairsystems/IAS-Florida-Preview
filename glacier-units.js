@@ -16,7 +16,8 @@
    ═════════════════════════════════════════════════════════════════════ */
 
 window.GLACIER = {
-  apiUrl: '',
+  // "Glacier secure lookup" web app in iasfloridaserver@gmail.com
+  apiUrl: 'https://script.google.com/macros/s/AKfycbwNcLP1rk3AzVVXoae3p0dXWMSZIAepfBOZ9w146xf7n9CbImsE3LzldlteKLtMREB_/exec',
 
   /* The address printed inside every QR code (the final website).
      Print tags only once iasflorida.com serves this site. */
