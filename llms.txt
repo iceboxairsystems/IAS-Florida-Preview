@@ -1,6 +1,6 @@
 # IAS Florida
 
-> Licensed HVAC mechanical contractor serving Miami-Dade and Broward counties in South Florida.
+> Licensed Class A air-conditioning (HVAC) contractor serving Miami-Dade and Broward counties in South Florida.
 > Residential and commercial heating, ventilation, air conditioning and
 
 IAS Florida LLC is the Miami operating subsidiary of Icebox Air Systems LLC.
@@ -25,7 +25,7 @@ The workmanship warranty is 90 days (labor).
 ## Plans
 
 Residential (homes and condos):
-- Cold Snap — $159, one-time annual tune-up (includes outdoor coil cleaning)
+- Cold Snap — $500, premium one-time AC deep wash visit (indoor coil and blower wheel deep wash, outdoor coil wash, drain line flush and drain pan cleaning, full inspection, refrigerant check and new filter)
 - Deep Freeze — $49/month home membership: two tune-ups per year (the first after the third monthly payment), 10% off repairs, priority dispatch, no $99 diagnostic fee, no after-hours fee on emergencies after the first 30 days; each additional system (AC or heat pump) +$25/month
 
 Commercial (businesses, offices and multi-unit buildings):
@@ -40,6 +40,7 @@ Commercial (businesses, offices and multi-unit buildings):
 - [About](https://iasflorida.com/about.html): Company background, licensing and response promise
 - [FAQ](https://iasflorida.com/faq.html): Response times, estimate pricing, licensing, financing, payment
 - [Privacy Policy](https://iasflorida.com/privacy.html)
+- [Accessibility Statement](https://iasflorida.com/accessibility.html): WCAG 2.1 AA commitment and how to get help
 - [Terms of Service](https://iasflorida.com/terms.html)
 - [Cancel membership](https://iasflorida.com/cancel.html): Online cancellation form for Deep Freeze members (no fee; payments already made are not refunded)
 - [Autopay](https://iasflorida.com/autopay.html): Optional autopay sign-up. Customers save a card on a secure payment page (never on the website) and are charged for approved work once it's done, with an emailed receipt; it can be turned off anytime

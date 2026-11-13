@@ -54,7 +54,7 @@ const SITE_ES = {
   'svc.maint.t':'Mantenimiento','svc.maint.s':'Afinaciones dos veces al año',
   'svc.emerg.t':'Servicio de emergencia','svc.emerg.s':'Despacho diario hasta las 10 PM',
   'crumb.home':'Inicio','crumb.services':'Servicios',
-  'footer.blurb':'Contratista mecánico con licencia que atiende Miami-Dade y Broward con HVAC residencial y comercial y despacho de emergencias todos los días hasta las 10 PM.',
+  'footer.blurb':'Contratista de aire acondicionado con licencia que atiende Miami-Dade y Broward con HVAC residencial y comercial y despacho de emergencias todos los días hasta las 10 PM.',
   'footer.services':'Servicios','footer.company':'Empresa','footer.contact':'Contacto','footer.hours':'Oficina: lun–vie, 8 AM–5 PM',
   'footer.area':'Todo Miami-Dade y Broward',
   'footer.parent':'Una compañía de Icebox Air Systems',
@@ -83,8 +83,21 @@ const SITE_ES = {
   'portal.aria':'Portal del cliente (se abre en una pestaña nueva)','portal.title':'Portal del cliente: facturas, cotizaciones y pagos',
   'nav.calllabel':'Línea abierta 24/7','more':'Ver detalles',
   'seg.res':'Residencial','seg.com':'Comercial',
+  'a11y.newtab':'Se abre en una pestaña nueva','footer.a11y':'Accesibilidad',
   'cta.eyebrow':'¿Listo?'
 };
+
+/* Accesibilidad: avisar a lectores de pantalla cuando un enlace abre una pestaña nueva */
+(function(){
+  const aviso = document.createElement('span');
+  aviso.id = 'a11y-newtab'; aviso.hidden = true;
+  aviso.setAttribute('data-i18n', 'a11y.newtab');
+  aviso.textContent = 'Opens in a new tab';
+  document.body.appendChild(aviso);
+  const marcar = () => document.querySelectorAll('a[target="_blank"]:not([aria-describedby])').forEach(a => a.setAttribute('aria-describedby', 'a11y-newtab'));
+  marcar();
+  document.addEventListener('ias:lang', marcar);
+})();
 
 let currentLang = almacen.leer('ias_lang') || 'en';
 const textoOriginal = new Map();
@@ -129,6 +142,12 @@ applyLanguage(currentLang);
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
     }));
+    // Escape cierra el menú del celular y devuelve el foco al botón
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus();
+      }
+    });
   }
   // Menú desplegable de Servicios (clic y teclado; hover en escritorio)
   document.querySelectorAll('.nav-drop').forEach(drop => {
@@ -164,6 +183,9 @@ applyLanguage(currentLang);
       f.style.opacity = 0.3 + Math.random() * 0.4;
       nieve.appendChild(f);
     }
+    // Accesibilidad (WCAG 2.2.2): el movimiento decorativo se detiene antes de 5 segundos
+    setTimeout(() => nieve.classList.add('calm'), 4000);
+    setTimeout(() => { nieve.textContent = ''; }, 5000);
   }
   // Aparición escalonada
   const items = [...document.querySelectorAll('.reveal')];
@@ -205,8 +227,14 @@ document.querySelectorAll('.chip input').forEach(input => {
 /* ═══════════════════════════════════════════════════════════════
    FORMULARIOS (Formspree)
    La dirección de envío está en action="" de cada <form>.
-     Inicio (cotización rápida)   →  xvkpgbey
-     Contacto y planes            →  xrpzbanw
+     Inicio (cotización rápida, respaldo) →  xvkpgbey  "Website – Home quote (backup)"
+     Contacto (respaldo)                  →  xbggnjkz  "Website – Contact (backup)"
+     Planes                               →  xrpzbanw  "Website – Plans request"
+     Pago automático (autopay)            →  mgaagezo  "Website – Autopay sign-up"
+     Cancelación de membresía             →  mvkkeoqr  "Website – Membership cancellation"
+   Todos envían a jobs@iasflorida.com (cuenta Formspree, plan gratis:
+   50 envíos al mes, el archivo guarda 30 días; el correo es el registro).
+   Los de "respaldo" solo se usan si se vacía leadForm en housecall-pro.js.
    ═══════════════════════════════════════════════════════════════ */
 const MSG = {
   es: { requerido:'Este campo es obligatorio.', nombre:'Escribe tu nombre completo.', telefono:'Escribe un teléfono válido de 10 dígitos.',
@@ -303,6 +331,18 @@ document.querySelectorAll('form[data-formspree]').forEach(form => {
   });
 });
 
+/* Accesibilidad: mantener el foco del teclado dentro de una ventana abierta (Tab y Shift+Tab) */
+function atraparFoco(caja, e){
+  if (e.key !== 'Tab') return;
+  const f = [...caja.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]):not([type=hidden]),select,textarea,[tabindex]:not([tabindex="-1"])')]
+    .filter(el => el.offsetParent !== null || el === document.activeElement);
+  if (!f.length) { e.preventDefault(); return; }
+  const primero = f[0], ultimo = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+  else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+  else if (!caja.contains(document.activeElement)) { e.preventDefault(); primero.focus(); }
+}
+
 /* Ventana de agradecimiento */
 let graciasForm = null, graciasFoco = null;
 function abrirGracias(form){
@@ -331,7 +371,10 @@ function cerrarGracias(){
   const b = document.getElementById('thanksBtn');
   if (b) b.addEventListener('click', cerrarGracias);
   if (modal) modal.addEventListener('click', e => { if (e.target === modal) cerrarGracias(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarGracias(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') cerrarGracias();
+    if (modal && modal.classList.contains('open')) atraparFoco(modal, e);
+  });
 })();
 
 /* ═══════════════ AVISO DE COOKIES ═══════════════ */
@@ -340,10 +383,11 @@ function cerrarGracias(){
   if (!barra) return;
   const guardado = almacen.leer('ias_cookies');
   if (guardado === 'all') { gtag('consent', 'update', { analytics_storage:'granted' }); cargarAnalytics(); }
-  if (!guardado) setTimeout(() => barra.classList.add('show'), 900);
+  if (!guardado) setTimeout(() => { barra.classList.add('show'); document.documentElement.classList.add('cookie-open'); }, 900);
   function decidir(valor){
     almacen.guardar('ias_cookies', valor);
     barra.classList.remove('show');
+    document.documentElement.classList.remove('cookie-open');
     if (valor === 'all') { gtag('consent', 'update', { analytics_storage:'granted' }); cargarAnalytics(); }
   }
   document.getElementById('cookieAccept').addEventListener('click', () => decidir('all'));
@@ -369,12 +413,26 @@ function cerrarGracias(){
   const carrito = new Map();
   const fab = document.getElementById('cartFab');
   const overlay = document.getElementById('cartOverlay');
-  const abrir = () => { panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('cartClose').focus(); };
-  const cerrar = () => { panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; };
+  // Accesibilidad: el panel se anuncia como ventana, retiene el foco y lo devuelve al cerrar
+  let focoAntes = null;
+  const abrir = () => {
+    focoAntes = document.activeElement;
+    panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-modal', 'true');
+    panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('cartClose').focus();
+  };
+  const cerrar = () => {
+    panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = '';
+    panel.removeAttribute('aria-modal');
+    const destino = (focoAntes && document.contains(focoAntes) && focoAntes.offsetParent !== null) ? focoAntes : fab;
+    if (destino && destino.focus) destino.focus();
+  };
   document.getElementById('cartClose').addEventListener('click', cerrar);
   overlay.addEventListener('click', cerrar);
   fab.addEventListener('click', abrir);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.classList.contains('open')) cerrar(); });
+  document.addEventListener('keydown', e => {
+    if (!panel.classList.contains('open')) return;
+    if (e.key === 'Escape') cerrar(); else atraparFoco(panel, e);
+  });
 
   function agregar(id){
     const btn = document.querySelector('[data-plan="' + id + '"]');
