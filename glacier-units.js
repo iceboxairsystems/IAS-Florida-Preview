@@ -21,12 +21,15 @@
    ═════════════════════════════════════════════════════════════════════ */
 
 window.GLACIER = {
-  unitsCsv:  '',   // Google Sheet "Units" tab, published as CSV
-  visitsCsv: '',   // Google Sheet "Visits" tab, published as CSV
+  // Google Sheet "IAS Glacier – Units", published as CSV
+  unitsCsv:  'https://docs.google.com/spreadsheets/d/e/2PACX-1vQowiA20FzaX01oFWrB3L9xmbtwWDWNnQgkf5Sh0-tyj0YFH8ZvETNgjQzZ1agw6ausORkxZPUMnYDC/pub?output=csv',
+  // Google Sheet "IAS Glacier – Visits", published as CSV
+  visitsCsv: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSmPLzd8uRBpB6SLNze88k4J8LO2_pBkQLgXE7IwTj9jM7wfx0AnKlHpT5wj21eiSABzCWZ_MQn671n/pub?output=csv',
 
-  /* The address printed inside every QR code. Set this to your FINAL
-     website address before printing tags: printed tags can't be changed. */
-  qrBase: 'https://iceboxairsystems.github.io/IAS-Florida-Preview/unit.html?id=',
+  /* The address printed inside every QR code (your final website).
+     Printed tags can't be changed, so print only once iasflorida.com
+     serves this site. */
+  qrBase: 'https://iasflorida.com/unit.html?id=',
 
   /* Service requests from a tag go here as a text message. */
   textNumber: '+17868226849',
