@@ -36,7 +36,7 @@ Commercial (businesses, offices and multi-unit buildings):
 - [Home](https://iasflorida.com/): Services overview, maintenance plans and estimate request form
 - [Plans & financing](https://iasflorida.com/plans.html): Maintenance plans, financing steps, payment methods and how billing works
 - [Book online](https://iasflorida.com/book.html): Online appointment booking
-- [Contact](https://iasflorida.com/contact.html): Phone, text, email, WhatsApp and request form
+- [Contact](https://iasflorida.com/contact.html): Phone, text, email and request form
 - [About](https://iasflorida.com/about.html): Company background, licensing and response promise
 - [FAQ](https://iasflorida.com/faq.html): Response times, estimate pricing, licensing, financing, payment
 - [Privacy Policy](https://iasflorida.com/privacy.html)
